@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit User</h1>
+<!--For flashing messages-->
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		
+		{% for message in messages %}
+		  {{ message }}
+		{% endfor %}
+		
+	  {% endif %}
+	{% endwith %}
+</p>
+    {% for obj in data %}
+    
+    <form method="post" action="/saveChanges" enctype="multipart/form-data">
+        <br>
+        <!--Enter student name-->
+        <p>
+            <label>Student Name :</label>
+            <input type="text" name="name" autocomplete="off" required autocorrect="off" spellcheck="false" value="{{ obj.student_name }}">   
+        </p>
+        <br>
+        <br>
+
+        <!--Upload student face image-->
+        <p>
+            <label>Student image :</label>
+            <input type="file" name="file" autocomplete="off">
+        </p>
+        
+        <p><a href=/saveChanges?name={{obj.student_name}}>SAVE CHANGES</a></p>
+        <p><a href=/delete?name={{obj.student_name}}>DELETE</a></p>
+        <p><a href="/cancel">CANCEL</p>
+    </form>
+    {% endfor %}
+{% endblock %}

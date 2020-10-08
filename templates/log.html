@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Student Log</h1>
+    <table><tr class="data"> 
+        <ul>     
+        <td>Sr. No.</td>  
+        <td>Student Name</td>
+        <td>Added on</td>
+        <td></td>
+    </ul>  
+    </tr>
+    {% for mycol in mycol %}
+  
+        <tr class="data"> 
+            <ul>  
+                <td class="no">{{ loop.index }}</td>   
+            <td class="name">{{ mycol["student_name"] }}</td> 
+            <td class="timestamp">{{ mycol["added_on"] }}</td>  
+            <!-- <td class="delete"><a href="./remove?_id={{ mycol['student_name'] }}"><button type="submit">DELETE</button></a></td>   -->
+            <td class="delete"><a href=/editUser?name={{mycol.student_name}}><button type="submit">EDIT</button></a></td>  
+        </ul>  
+        </tr>
+      
+    {% endfor %}
+</table>
+{% endblock %}
